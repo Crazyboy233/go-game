@@ -8,7 +8,8 @@ go-game-server/
 │   │   └── manager.go       # 玩家管理器（map、注册/查找逻辑）
 │   │
 │   ├── command/         # 命令解析 & 分发模块
-│   │   ├── parser.go        # 解析字符串指令
+│   │   ├── parser.go    # 解析字符串指令
+        ├── ui.go        #  🆕 菜单展示函数（核心交互界面）
 │   │   └── dispatcher.go    # 执行对应逻辑
 │   │
 │   └── match/           # 匹配系统（后续用）
@@ -32,3 +33,6 @@ go-game-server/
 | `match/match.go`        | 模拟匹配逻辑（等后续）                        |
 | `pkg/logx/log.go`       | 轻量日志封装（可选）                         |
 | `config/server.yaml`    | 模拟加载配置（后续）                         |
+
+
+// 虽然现在的代码是一坨，但是会变好的!
