@@ -1,0 +1,44 @@
+package player
+
+import (
+	"fmt"
+)
+
+var Manager = make(map[int]*Player)
+
+func GetPlayerByID(id int) (*Player, bool) {
+	p, ok := Manager[id]
+	return p, ok
+}
+
+func QueryPlayer(id int) (Player, error) {
+	if Manager == nil {
+		return Player{}, fmt.Errorf("玩家管理器未初始化")
+	}
+
+	value, exists := Manager[id]
+	if !exists {
+		return Player{}, fmt.Errorf("查找的玩家不存在")
+	}
+	return *value, nil
+}
+
+// 注册玩家，id自动分配
+func Register(name string) *Player {
+	// 方法1. map的大小+1就是下一个id值
+
+	// 这里用第一种方法。
+	player := &Player{len(Manager), name, false}
+	return player
+
+	// 方法2. 生成随机值，检查是否有该id。再赋值
+}
+
+// 查看玩家状态
+func Status(id int) bool {
+	if Manager[id].online {
+		return true
+	} else {
+		return false
+	}
+}
