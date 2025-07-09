@@ -42,15 +42,6 @@ func Parser() Command {
 }
 
 // 参数个数校验
-// func ParameterVerification(name string) int {
-// 	switch name {
-// 	case "/Login":
-// 		return 1
-// 	case "/Logout":
-// 		return 1
-// 	case "register":
-// 		return 1
-// 	default:
-// 		return -1
-// 	}
+// func ParameterVerification(command Command) int {
+
 // }

@@ -8,7 +8,8 @@ import (
 )
 
 // 接收解析好的命令，判断要调用哪个模块
-func Dispatch(command Command) {
+// return 是否执行成功
+func Dispatch(command Command) bool {
 	switch command.Name {
 	case "/Login":
 		// 注意参数校验
@@ -19,15 +20,19 @@ func Dispatch(command Command) {
 				player, ok := player.GetPlayerByID(id)
 				if ok {
 					player.Login()
+					return true
 				} else {
 					// 此时没有通过id拿到玩家数据，表明该id未注册
-					fmt.Println("请先注册")
+					fmt.Println("请先注册！")
+					return false
 				}
 			} else {
 				fmt.Printf("id转换数字失败。错误：%v\n", err)
+				return false
 			}
 		} else {
 			fmt.Printf("登录命令的参数不正确。 args = %v\n", command.Args)
+			return false
 		}
 	case "/Logout":
 		// 参数校验
@@ -37,22 +42,28 @@ func Dispatch(command Command) {
 				player, ok := player.GetPlayerByID(id)
 				if ok {
 					player.Logout()
+					return true
 				} else {
 					// 此时没有通过id拿到玩家数据，表明该id未注册
 					fmt.Println("请先注册")
+					return false
 				}
 			} else {
 				fmt.Println("id转换数字失败")
+				return false
 			}
 		} else {
 			fmt.Println("登录命令的参数不正确")
+			return false
 		}
 	case "/Register":
 		// 参数校验
 		if len(command.Args) == 1 {
 			player.Register(command.Args[0])
+			return true
 		} else {
 			fmt.Println("登录命令的参数不正确")
+			return false
 		}
 	case "/status":
 		// 参数校验
@@ -62,9 +73,11 @@ func Dispatch(command Command) {
 				player.Status(id)
 			} else {
 				fmt.Println("id转换数字失败")
+				return false
 			}
 		} else {
 			fmt.Println("登录命令的参数不正确")
+			return false
 		}
 	case "/match":
 		// 参数校验
@@ -77,15 +90,20 @@ func Dispatch(command Command) {
 					match.Match(&player)
 				} else {
 					fmt.Print("该玩家不存在，请先注册！")
+					return false
 				}
 			} else {
 				fmt.Println("id转换数字失败")
+				return false
 			}
 		} else {
 			fmt.Println("登录命令的参数不正确")
+			return false
 		}
 	default:
 		fmt.Println("没有该命令！")
-	} //case
+		return false
+	}
 
+	return false
 }

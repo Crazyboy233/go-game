@@ -24,11 +24,13 @@ func QueryPlayer(id int) (Player, error) {
 }
 
 // 注册玩家，id自动分配
+// 注:玩家名称可以重复,只要注册,就认为是新号,而不是重复注册.
 func Register(name string) *Player {
 	// 方法1. map的大小+1就是下一个id值
-
-	// 这里用第一种方法。
-	player := &Player{len(Manager), name, false}
+	id := len(Manager) + 1
+	player := &Player{id, name, false}
+	Manager[id] = player
+	fmt.Println("注册成功，请重新登录！")
 	return player
 
 	// 方法2. 生成随机值，检查是否有该id。再赋值
