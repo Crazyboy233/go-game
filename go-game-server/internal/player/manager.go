@@ -30,17 +30,15 @@ func Register(name string) *Player {
 	id := len(Manager) + 1
 	player := &Player{id, name, false}
 	Manager[id] = player
-	fmt.Println("注册成功，请重新登录！")
+	fmt.Printf("注册成功，你的游戏账号为 %d\n", id)
+	fmt.Println("请重新登陆！")
 	return player
 
 	// 方法2. 生成随机值，检查是否有该id。再赋值
 }
 
-// 查看玩家状态
-func Status(id int) bool {
-	if Manager[id].online {
-		return true
-	} else {
-		return false
-	}
+// 查看玩家信息
+func Status(id int) Player {
+	player := Manager[id]
+	return *player
 }

@@ -45,7 +45,7 @@ func Dispatch(command Command) bool {
 					return true
 				} else {
 					// 此时没有通过id拿到玩家数据，表明该id未注册
-					fmt.Println("请先注册")
+					fmt.Println("该用户不存在，请先注册")
 					return false
 				}
 			} else {
@@ -70,6 +70,7 @@ func Dispatch(command Command) bool {
 		if len(command.Args) == 1 {
 			id, err := strconv.Atoi(command.Args[0])
 			if err == nil {
+				// TODO: 这里展示个人信息，要接收Status的返回值。
 				player.Status(id)
 			} else {
 				fmt.Println("id转换数字失败")
