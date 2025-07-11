@@ -9,7 +9,7 @@ go-game-server/
 │   │
 │   ├── command/         # 命令解析 & 分发模块
 │   │   ├── parser.go    # 解析字符串指令
-        ├── ui.go        #  🆕 菜单展示函数（核心交互界面）
+│   │   ├── ui.go        #  🆕 菜单展示函数（核心交互界面）
 │   │   └── dispatcher.go    # 执行对应逻辑
 │   │
 │   └── match/           # 匹配系统（后续用）

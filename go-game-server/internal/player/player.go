@@ -34,12 +34,17 @@ func (player *Player) Logout() {
 	}
 }
 
-// 判断玩家是否在线
-func (player Player) IsOnline() bool {
-	return player.online
+// 获取玩家id
+func (player Player) GetId() int {
+	return player.id
 }
 
 // 获取玩家名称
 func (player Player) GetName() string {
 	return player.name
+}
+
+// 判断玩家是否在线
+func (player Player) IsOnline() bool {
+	return player.online
 }

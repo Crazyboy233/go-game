@@ -71,7 +71,12 @@ func Dispatch(command Command) bool {
 			id, err := strconv.Atoi(command.Args[0])
 			if err == nil {
 				// TODO: 这里展示个人信息，要接收Status的返回值。
-				player.Status(id)
+				player := player.Status(id)
+				fmt.Println("===========================")
+				fmt.Printf("账号: %d\n", player.GetId())
+				fmt.Printf("名称: %v\n", player.GetName())
+				fmt.Printf("在线状态: %v\n", player.IsOnline())
+				fmt.Println("===========================")
 			} else {
 				fmt.Println("id转换数字失败")
 				return false

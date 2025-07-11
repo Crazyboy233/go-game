@@ -25,4 +25,5 @@ func AfterLogin() {
 func Debug() {
 	fmt.Println("===============你已进入开发者模式===============")
 	fmt.Println("请输入命令：")
+	// fmt.Println("-1: 退出开发者模式")
 }

@@ -53,8 +53,10 @@ func main() {
 						// 执行匹配操作
 					case "2":
 						// 显示个人信息
-
+						input = command.Command{Name: "/status", Args: []string{id}}
+						command.Dispatch(input)
 					case "3":
+						// 登出标记改为 true
 						isExit = true
 					case "4":
 						return
@@ -63,6 +65,7 @@ func main() {
 						continue
 					}
 
+					// 判断用户是否登出
 					if isExit {
 						break
 					}
@@ -85,9 +88,13 @@ func main() {
 			return
 		case -1:
 			// 将来执行开发者模式，直接输入指令，以上帝视角操控玩家状态。
-			command.Debug()
-			input := command.Parser()
-			command.Dispatch(input)
+			for {
+				command.Debug()
+				input := command.Parser()
+				command.Dispatch(input)
+				fmt.Println("====================")
+			}
+
 		default:
 			continue
 		}
